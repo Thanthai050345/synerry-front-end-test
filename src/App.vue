@@ -1,26 +1,65 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <a-layout :style="{ height: '100%' }">
+    <Topbar />
+    <a-layout>
+      <Sidebar />
+      <a-layout>
+        <a-layout-content
+          :style="{
+            background: '#fff',
+            padding: '0px',
+            margin: 0,
+            height: '100%',
+            overflow: 'auto',
+          }"
+        >
+          <router-view></router-view>
+        </a-layout-content>
+        <Footer />
+      </a-layout>
+    </a-layout>
+  </a-layout>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from "vue";
+import Topbar from "./components/layouts/Topbar.vue";
+import Sidebar from "./components/layouts/Sidebar/Sidebar.vue";
+import Footer from "./components/layouts/Footer.vue";
 
-export default {
-  name: 'App',
+export default defineComponent({
   components: {
-    HelloWorld
-  }
-}
+    Topbar,
+    Sidebar,
+    Footer,
+  },
+});
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+}
+
+#components-layout-demo-top-side-2 .logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ant-row-rtl #components-layout-demo-top-side-2 .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+
+.site-layout-background {
+  background: #fff;
 }
 </style>
