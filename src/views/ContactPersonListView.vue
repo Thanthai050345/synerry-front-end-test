@@ -51,14 +51,6 @@
                     Delete this filter
                   </a>
                 </a-menu-item>
-                <a-menu-item key="4">
-                  <ButtonModalDisplayField
-                    :propsVisible="testVisible"
-                    @showModal="toggleModal"
-                    @testHandleOk="testHandleOk"
-                    @testHandleCancel="testHandleCancel"
-                  />
-                </a-menu-item>
               </a-menu>
             </template>
           </a-dropdown>
@@ -89,20 +81,44 @@
       </template>
       <div class="modal_content">
         <p class="modal_content_title">Column Info</p>
-        <a-button
+        <draggable
+          :list="checkDataDisplaySelect02"
+          :disabled="!enabled"
+          item-key="value"
+          class="list-group"
+          ghost-class="ghost"
+          :move="checkMove"
+          @start="dragging = true"
+          @end="dragging = false"
+        >
+          <template #item="{ element }">
+            <a-button
+              class="list-group-item info_item info_item_cancle"
+              :class="{ 'not-draggable': !enabled }"
+            >
+              <div>
+                <UnorderedListOutlined class="front_element" />
+                <span>{{ element.value }}</span>
+              </div>
+              <div>
+                <CloseOutlined @click="removeDataDisplaySelect(element)" />
+              </div>
+            </a-button>
+          </template>
+        </draggable>
+        <!-- <a-button
           v-for="item in checkDataDisplaySelect"
           :key="item.key"
           class="info_item info_item_cancle"
-          @click="removeDataDisplaySelect(item)"
         >
           <div>
             <UnorderedListOutlined class="front_element" />
-            <span>{{ item }}</span>
+            <span>{{ item.value }}</span>
           </div>
           <div>
-            <CloseOutlined />
+            <CloseOutlined @click="removeDataDisplaySelect(item)" />
           </div>
-        </a-button>
+        </a-button> -->
         <a-button type="dashed" block class="info_item" @click="showModal">
           <PlusOutlined />
           Add Field
@@ -134,6 +150,24 @@
       <div class="modal_content_select">
         <a-button
           class="select_item"
+          @click="addDataDisplaySelect('Name Surname')"
+        >
+          Name-Surname
+        </a-button>
+        <a-button class="select_item" @click="addDataDisplaySelect('Company')">
+          Company
+        </a-button>
+        <a-button class="select_item" @click="addDataDisplaySelect('Email')">
+          Email
+        </a-button>
+        <a-button
+          class="select_item"
+          @click="addDataDisplaySelect('Mobile Number')"
+        >
+          Mobile Number
+        </a-button>
+        <a-button
+          class="select_item"
           @click="addDataDisplaySelect('Industrial')"
         >
           Industrial
@@ -141,8 +175,8 @@
         <a-button class="select_item" @click="addDataDisplaySelect('Sources')">
           Sources
         </a-button>
-        <a-button class="select_item" @click="addDataDisplaySelect('owner')">
-          owner
+        <a-button class="select_item" @click="addDataDisplaySelect('Owner')">
+          Owner
         </a-button>
         <a-button class="select_item" @click="addDataDisplaySelect('Add Date')">
           Add Date
@@ -173,10 +207,9 @@
     <!-- Sub Modal -->
   </div>
 </template>
-  
+
 <script>
 import TableItem from "../components/contactPersonList/TableItem.vue";
-import ButtonModalDisplayField from "../components/contactPersonList/ButtonModalDisplayField.vue";
 import {
   PlusOutlined,
   SettingOutlined,
@@ -189,102 +222,152 @@ import {
   UnorderedListOutlined,
   CloseOutlined,
 } from "@ant-design/icons-vue";
+import draggable from "vuedraggable";
 
 import { ref } from "vue";
 export default {
   name: "ContactPersonListView",
   data() {
-    let dataDisplaySelect = {
-      nameSurname: "Name-Surname",
-      company: "Company",
-      mobileNumber: "Mobile Number",
-      lastContactDate: "Last Contact Date",
-    };
+    // dataDisplaySelect pass to columns in TableItem components.
+    let dataDisplaySelect = [
+      {
+        key: "nameSurname",
+        value: "Name Surname",
+        index: 0,
+      },
+      {
+        key: "company",
+        value: "Company",
+        index: 1,
+      },
+      {
+        key: "mobileNumber",
+        value: "Mobile Number",
+        index: 2,
+      },
+      {
+        key: "lastContactDate",
+        value: "Last Contact Date",
+        index: 3,
+      },
+    ];
 
+    // confirmDataDisplaySelect used for confirm button in sub modal.
     const confirmDataDisplaySelect = {};
-    const checkDataDisplaySelect = {...dataDisplaySelect};
+    // checkDataDisplaySelect used for recheck button in main modal.
+    const checkDataDisplaySelect = { ...dataDisplaySelect };
+    const checkDataDisplaySelect02 = [...dataDisplaySelect];
     const mainModalLoading = ref(false);
     const mainModalVisible = ref(false);
+    // constant name visible used for handle sub modal visible.
     const visible = ref(false);
-    const testVisible = ref(false);
 
     return {
       mainModalLoading,
       mainModalVisible,
-      visible,
       dataDisplaySelect,
+      visible,
       confirmDataDisplaySelect,
       checkDataDisplaySelect,
-      testVisible,
+      enabled: true,
+      dragging: false,
+      checkDataDisplaySelect02,
     };
   },
+  computed: {
+    draggingInfo() {
+      return this.dragging ? "under drag" : "";
+    },
+  },
   methods: {
-    toggleModal(testVisible) {
-      this.testVisible = testVisible;
+    checkMove: function (e) {
+      window.console.log("Future index: " + e.draggedContext.futureIndex);
     },
-    testHandleOk(bool) {
-      this.testVisible = bool;
-      console.log(this.testVisible);
-    },
-    testHandleCancel(bool) {
-      this.testVisible = bool;
-      console.log(this.testVisible);
-    },
-
-    showModal() {
-      this.visible = true;
-    },
+    // this method used to change main modal visible.
     showMainSelectDisplayModal() {
       this.mainModalVisible = true;
     },
+    // this method used to handle ok state in main modal.
     mainHandleOk() {
       this.mainModalLoading = true;
-      this.dataDisplaySelect = {...this.checkDataDisplaySelect}
-      console.log(this.dataDisplaySelect)
+      this.dataDisplaySelect = { ...this.checkDataDisplaySelect };
       setTimeout(() => {
         this.mainModalLoading = false;
         this.mainModalVisible = false;
       }, 1000);
     },
+    // this method used to handle cancel state in main modal.
     mainHandleCancel() {
       this.mainModalVisible = false;
-      this.checkDataDisplaySelect = {...this.dataDisplaySelect}
+      this.checkDataDisplaySelect = { ...this.dataDisplaySelect };
     },
-
-    showSubSelectDisplayModal() {
+    // this method used to chenge sub modal visible.
+    showModal() {
       this.visible = true;
     },
+    // showSubSelectDisplayModal() {
+    //   this.visible = true;
+    // },
+    // // this method used to handle ok state in sub modal.
     subHandleOk() {
+      // tessArr used for convert wrong format data to correct format for checkDataDisplaySelect.
+      const testArr = [];
+      // covert format data to checkDataDisplaySelect format.
+      for (const [index, [key, value]] of Object.entries(
+        Object.entries(this.confirmDataDisplaySelect)
+      )) {
+        testArr[index] = new Proxy(
+          {
+            key: key,
+            value: value,
+            index: this.dataDisplaySelect.length + testArr.length,
+          },
+          {}
+        );
+      }
       this.checkDataDisplaySelect = {
         ...this.dataDisplaySelect,
-        ...this.confirmDataDisplaySelect,
       };
+
+      for (const item of testArr) {
+        // const size = Object.keys(this.checkDataDisplaySelect).length;
+        // this.checkDataDisplaySelect = { ...this.checkDataDisplaySelect };
+        // this.checkDataDisplaySelect[size] = item;
+        this.checkDataDisplaySelect02.push(item)
+      }
+      console.log(this.dataDisplaySelect);
+      console.log(this.checkDataDisplaySelect02)
+      // close sub modal and restate main modal to present.
       this.visible = false;
       this.mainModalVisible = false;
       setTimeout(() => {
         this.mainModalVisible = true;
       }, 0.01);
     },
+    // this method used to handle cancel state in sub modal.
     subHandleCancel() {
       this.visible = false;
     },
 
+    // this method used when button in sub modal is clicked.
     addDataDisplaySelect(item) {
       let newItem =
         item.replace(/ |-/g, "")[0].toLowerCase() +
         item.replace(/ |-/g, "").slice(1);
       this.confirmDataDisplaySelect[newItem] = item;
     },
-
+    // this method used when button in main modal is clicked.
     removeDataDisplaySelect(item) {
-      let newItem =
-        item.replace(/ |-/g, "")[0].toLowerCase() +
-        item.replace(/ |-/g, "").slice(1);
-      delete this.checkDataDisplaySelect[newItem];
-      delete this.confirmDataDisplaySelect[newItem];
+      for (const [key, value] of Object.entries(this.checkDataDisplaySelect)) {
+        if (value === item) {
+          delete this.checkDataDisplaySelect[key];
+        }
+      }
+      delete this.confirmDataDisplaySelect[item.key];
     },
   },
   watch: {
+    // watch dataDisplaySelect.
     dataDisplaySelect: {
       handler: function (val) {
         console.log("display", val);
@@ -304,12 +387,31 @@ export default {
     DeleteOutlined,
     UnorderedListOutlined,
     CloseOutlined,
-    ButtonModalDisplayField,
+    draggable,
   },
 };
 </script>
 
 <style scoped>
+ul.sort {
+  list-style: none;
+  padding: 0;
+  margin: 30px;
+}
+
+li.sort-item {
+  padding: 10px;
+  width: 25%;
+  float: left;
+  margin: 0 10px 10px 0;
+  background: #efefef;
+  border: solid 1px #ccc;
+}
+
+.sort-ghost {
+  opacity: 0.3;
+  transition: all 0.7s ease-out;
+}
 .title {
   font-size: 20px;
   font-weight: bold;
@@ -358,6 +460,7 @@ export default {
   margin-top: 10px;
   border-radius: 4px;
   height: 36px;
+  width: 100%;
 }
 .info_item_cancle {
   display: flex;

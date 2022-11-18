@@ -62,4 +62,15 @@ export default defineComponent({
 .site-layout-background {
   background: #fff;
 }
+.ant-table-pagination-right {
+  justify-content: flex-start !important;
+}
+.ant-table-thead > tr > th {
+  background: #ffffff !important;
+  border-bottom: 3px solid #e8e8ea !important;
+  padding-bottom: 5px !important;
+}
+.ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+  content: none !important;
+}
 </style>

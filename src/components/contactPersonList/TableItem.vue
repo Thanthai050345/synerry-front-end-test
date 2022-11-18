@@ -25,6 +25,11 @@
     "
   >
     <template #bodyCell="{ column, record }">
+      <template v-if="column.key === 'nameSurname'">
+        <span class="nameSurname">
+          {{ record.nameSurname }}
+        </span>
+      </template>
       <template v-if="column.key === 'option'">
         <a-dropdown :trigger="['click']" class="ant-dropdown-link">
           <button class="option_dropdown_icon" @click.prevent>
@@ -66,22 +71,22 @@ import {
 } from "@ant-design/icons-vue";
 export default defineComponent({
   data() {
-    let columns = Object.entries(this.dataDisplaySelect).map(([key, value]) => {
-      if (key === "nameSurname") {
+    let columns = this.dataDisplaySelect.map((dataDisplay) => {
+      if (dataDisplay.key === "nameSurname") {
         return {
-          title: value,
-          dataIndex: key,
-          key: key,
+          title: dataDisplay.value,
+          dataIndex: dataDisplay.key,
+          key: dataDisplay.key,
           width: 200,
         };
       }
       return {
-        title: value,
-        dataIndex: key,
-        key: key,
+        title: dataDisplay.value,
+        dataIndex: dataDisplay.key,
+        key: dataDisplay.key,
         width: 250,
       };
-    });
+    })
     columns.push({
       title: "Option",
       dataIndex: "option",
@@ -125,7 +130,6 @@ export default defineComponent({
     const dataSource = ref(createMockupData([]));
     const count = computed(() => dataSource.value.length + 1);
     const editableData = reactive({});
-
     return {
       dataSource,
       editableData,
@@ -134,11 +138,11 @@ export default defineComponent({
   },
   methods: {
     updateColumnsVal(val) {
-      this.columns = Object.entries(val).map(([key, value]) => {
+      this.columns = Object.values(val).map((value) => {
         return {
-          title: value,
-          dataIndex: key,
-          key: key,
+          title: value.value,
+          dataIndex: value.key,
+          key: value.key,
           width: 100,
         };
       });
@@ -220,5 +224,8 @@ export default defineComponent({
 }
 .ant-table-wrapper {
   padding: 0 24px 0 24px !important;
+}
+.ant-table-striped :deep(.table-striped) td {
+  background-color: #F9F9FC;
 }
 </style>
