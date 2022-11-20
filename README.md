@@ -19,6 +19,11 @@ If you want to see this project on you locallhost you will be...
 1. The first step when you cloning this repository. you will be run command "yarn" in command line or another command for install depedency in package.json.
 2. The second step to start the project. you will be run command "yarn serve" to serve this project.
 
+**If you have problem about how to run this project, plase texing to me**
+FB: [Thanthai Jitprathum](https://web.facebook.com/tanthai.jitprathum)
+Linkedin: [Thanthai's Linkedin](www.linkedin.com/in/thanthai-jitprathum)
+LineID: talanddd
+
 ## Project setup
 ```
 yarn install
