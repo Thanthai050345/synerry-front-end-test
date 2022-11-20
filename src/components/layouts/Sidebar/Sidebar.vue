@@ -7,16 +7,24 @@
     :trigger="null"
   >
     <div class="logo logo_sidebar">
-      <div class="header_sidebar">
+      <div :class="{ header_sidebar: true, header_sidebarder: collapsed }">
         <h1 class="header_text">
           {{
             this.$route.path === "/"
-              ? "Dashboard"
-              : this.$route.path === "/contact-person-list"
               ? "Contact Person List"
+              : this.$route.path === "/dashboard"
+              ? "Dashboard"
               : this.$route.path === "/report"
               ? "Report"
-              : "Dashboard"
+              : this.$route.path === "/manage-layout"
+              ? "Manage Layout"
+              : this.$route.path === "/member"
+              ? "Member"
+              : this.$route.path === "/data-access"
+              ? "Data Access"
+              : this.$route.path === "/system-log"
+              ? "System Log"
+              : "None"
           }}
         </h1>
         <div class="close_open_sidebar">
@@ -24,12 +32,7 @@
             v-if="collapsed"
             :style="{ fontSize: '16px', color: '#ffffff' }"
             class="trigger"
-            @click="
-              () => {
-                collapsed = !collapsed;
-                collapsedStateArr.push(collapsed);
-              }
-            "
+            @click="toggleCollapsed"
           />
           <MenuFoldOutlined
             v-else
@@ -37,6 +40,7 @@
             class="trigger"
             @click="
               () => {
+                updateCollapsed();
                 collapsed = !collapsed;
                 collapsedStateArr.push(collapsed);
               }
@@ -77,7 +81,7 @@
             </defs>
           </svg>
         </template>
-        <router-link to="/">
+        <router-link to="/dashboard">
           <div>
             <span>Dashboard</span>
           </div>
@@ -107,7 +111,7 @@
             </defs>
           </svg>
         </template>
-        <router-link to="/contact-person-list">
+        <router-link to="/">
           <div>
             <span>Contact Person List</span>
           </div>
@@ -170,6 +174,11 @@ import MenuItem from "./MenuItem.vue";
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Sidebar",
+  props: {
+    updateCollapsed: {
+      type: Function,
+    },
+  },
   components: {
     SettingOutlined,
     MenuFoldOutlined,
@@ -177,10 +186,12 @@ export default defineComponent({
     MenuItem,
   },
   data() {
+    const updateThisCollapsed = this.updateCollapsed;
     return {
       setWidth: 240,
       collapsed: ref(false),
       collapsedStateArr: [],
+      updateThisCollapsed,
     };
   },
   setup() {
@@ -209,6 +220,13 @@ export default defineComponent({
     return {
       settingMenuTree,
     };
+  },
+  methods: {
+    toggleCollapsed() {
+      this.updateCollapsed();
+      this.collapsed = !this.collapsed;
+      this.collapsedStateArr.push(this.collapsed);
+    },
   },
   watch: {
     collapsed: function () {
@@ -271,5 +289,8 @@ export default defineComponent({
 }
 .menuOutlined {
   cursor: pointer;
+}
+.header_sidebarder {
+  display: none;
 }
 </style>

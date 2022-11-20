@@ -2,7 +2,7 @@
   <a-layout :style="{ height: '100%' }">
     <Topbar />
     <a-layout>
-      <Sidebar />
+      <Sidebar ref="collapsed" :updateCollapsed="updateCollapsed"/>
       <a-layout>
         <a-layout-content
           :style="{
@@ -13,7 +13,7 @@
             overflow: 'auto',
           }"
         >
-          <router-view></router-view>
+          <router-view :navbarBoolean="collapsed" :toggleCollapsed="toggleCollapsed"></router-view>
         </a-layout-content>
         <Footer />
       </a-layout>
@@ -28,6 +28,19 @@ import Sidebar from "./components/layouts/Sidebar/Sidebar.vue";
 import Footer from "./components/layouts/Footer.vue";
 
 export default defineComponent({
+  data() {
+    return {
+      collapsed: false,
+    };
+  },
+  methods: {
+    updateCollapsed() {
+      this.collapsed = !this.collapsed;
+    },
+    toggleCollapsed() {
+      this.$refs.collapsed.toggleCollapsed()
+    }
+  },
   components: {
     Topbar,
     Sidebar,

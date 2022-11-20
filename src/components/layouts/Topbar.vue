@@ -12,10 +12,8 @@
     <a-menu theme="white" mode="horizontal" :style="{ float: 'right' }">
       <a-menu-item>
         <a-input
-          v-model:value="value"
           placeholder="Search"
           class="search_input"
-          @search="onSearch"
         >
           <template #prefix>
             <svg

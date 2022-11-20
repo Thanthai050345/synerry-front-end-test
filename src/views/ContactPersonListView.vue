@@ -2,7 +2,27 @@
   <div class="contact_person">
     <div class="header_title">
       <div class="title_and_dropdown">
-        <div v-if="sidebarState">fdasfasd</div>
+        <div v-if="collapsed" class="menu_un_fold" @click="toggleCollapsed()">
+          <svg
+            width="18"
+            height="12"
+            viewBox="0 0 18 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0 2V0H18V2H0ZM0 7H18V5H0V7ZM0 12H18V10H0V12Z"
+              fill="#828282"
+            />
+          </svg>
+
+          <!-- <MenuUnfoldOutlined
+            :style="{ fontSize: '16px', cursor: 'pointer' }"
+            
+          /> -->
+        </div>
         <h1 class="title">{{ title }}</h1>
         <a-dropdown :trigger="['click']">
           <div class="dropdown">
@@ -255,6 +275,14 @@ import draggable from "vuedraggable";
 import { ref } from "vue";
 export default {
   name: "ContactPersonListView",
+  props: {
+    navbarBoolean: {
+      type: Boolean,
+    },
+    toggleCollapsed: {
+      type: Function,
+    },
+  },
   data() {
     // dataDisplaySelect pass to columns in TableItem components.
     let dataDisplaySelect = [
@@ -384,12 +412,21 @@ export default {
     handleAdd() {
       this.$refs.buttonAdd.handleAdd();
     },
+    changeCollapsedValue(collapsed) {
+      this.collapsed = collapsed;
+    },
   },
   watch: {
     // watch dataDisplaySelect.
     dataDisplaySelect: {
       handler: function (val) {
         console.log("display", val);
+      },
+      deep: true,
+    },
+    navbarBoolean: {
+      handler: function (val) {
+        this.changeCollapsedValue(val);
       },
       deep: true,
     },
@@ -544,6 +581,10 @@ li.sort-item {
 }
 .filter_dropdown_button {
   margin-right: 10px;
+}
+.menu_un_fold {
+  cursor: pointer;
+  padding: 6px 20px 0px 0px;
 }
 </style>
   
