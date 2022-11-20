@@ -16,7 +16,7 @@ Using Node version 16.15.1\
 Using UI framework Ant-Design-Vue version 3.2.15\
 and another library in package.json file
 
-If you want to see this project on you locallhost you will be...
+If you want to see this project on you localhost you will be...
 1. The first step when you cloning this repository. you will be run command "yarn" in command line or another command for install depedency in package.json.
 2. The second step to start the project. you will be run command "yarn serve" to serve this project.
 
