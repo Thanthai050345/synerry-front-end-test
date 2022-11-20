@@ -69,8 +69,85 @@ export default defineComponent({
   background: #ffffff !important;
   border-bottom: 3px solid #e8e8ea !important;
   padding-bottom: 5px !important;
+  padding-top: 30px !important;
 }
-.ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+.ant-table-thead
+  > tr
+  > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
   content: none !important;
+}
+.ant-pagination-item {
+  background: #ffffff !important;
+  border-radius: 4px !important;
+  font-weight: 500;
+  border: 1px solid #e8e8ea;
+  color: #454957 !important;
+}
+.ant-pagination-item-active a {
+  color: #ffffff !important;
+  font-weight: 500;
+}
+.ant-pagination-item-active {
+  background: #454957 !important;
+  border-radius: 4px !important;
+  border-color: #454957 !important;
+}
+.ant-pagination-item:hover {
+  background: #454957 !important;
+  border-radius: 4px !important;
+  border-color: #454957 !important;
+  color: #ffffff !important;
+}
+.ant-pagination-item-link {
+  background: #ffffff !important;
+  border-radius: 4px !important;
+  font-weight: 500;
+  border: 1px solid #e8e8ea;
+  color: #454957 !important;
+}
+.ant-pagination-item-link:hover {
+  background: #454957 !important;
+  border-radius: 4px !important;
+  border-color: #454957 !important;
+  color: #ffffff !important;
+}
+.ant-select-selector {
+  border-radius: 4px !important;
+  border: 1px solid #e8e8ea !important;
+}
+.ant-menu-item-only-child::before {
+  content: "•" !important;
+  color: #ffffff !important;
+  font-size: 20px !important;
+  margin-right: 10px !important;
+}
+.ant-layout-header {
+  padding: 0 5px 0px 5px !important;
+  /* line-height: 0 !important; */
+}
+.ant-menu-horizontal {
+  border-bottom: none !important;
+}
+.ant-menu-horizontal:hover {
+  color: black;
+}
+.ant-menu-item:hover::after {
+  border-bottom: none !important;
+}
+.ant-menu-item::before {
+  border-bottom: none !important;
+}
+.ant-menu-horizontal > .ant-menu-item::after,
+.ant-menu-horizontal > .ant-menu-submenu::after {
+  border-bottom: none !important;
+  transition: none !important;
+  content: none !important;
+}
+.ant-menu-horizontal > .ant-menu-item,
+.ant-menu-horizontal > .ant-menu-submenu {
+  padding: 0px !important;
+}
+.ant-menu-overflow {
+  padding-right: 30px !important;
 }
 </style>

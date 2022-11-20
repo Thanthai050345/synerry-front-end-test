@@ -1,18 +1,55 @@
 <template>
   <div class="contact_person">
     <div class="header_title">
-      <div>
-        <h1 class="title">Contact Person List</h1>
+      <div class="title_and_dropdown">
+        <div v-if="sidebarState">fdasfasd</div>
+        <h1 class="title">{{ title }}</h1>
+        <a-dropdown :trigger="['click']">
+          <div class="dropdown">
+            <a class="ant-dropdown-link dropdown-link" @click.prevent>
+              <div class="dropdown_icon">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.00214 10.0604C6.73405 10.0604 6.46595 9.95848 6.26094 9.75981L2.49715 6.11248C2.08713 5.71514 2.08713 5.0682 2.49715 4.67087C2.90717 4.27353 3.57477 4.27353 3.9848 4.67087L7.00214 7.59485L10.0195 4.67087C10.4295 4.27353 11.0971 4.27353 11.5071 4.67087C11.9171 5.0682 11.9171 5.71514 11.5071 6.11248L7.74333 9.75981C7.53832 9.95848 7.27023 10.0604 7.00214 10.0604Z"
+                    fill="#454957"
+                  />
+                </svg>
+              </div>
+            </a>
+          </div>
+          <template #overlay>
+            <a-menu>
+              <a-menu-item key="dashboard">
+                <a href="/">Dashboard</a>
+              </a-menu-item>
+              <a-menu-item key="report">
+                <a href="/report">Report</a>
+              </a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
       </div>
-      <div>
-        <a-button class="right_item">
-          <template #icon><plus-outlined /></template>
-          Add Contact Person
-        </a-button>
-        <a-button class="right_item">Imported</a-button>
-        <a-button shape="circle" class="right_item">
-          <template #icon><SettingOutlined /></template>
-        </a-button>
+      <div class="button_right_top_page">
+        <div>
+          <a-button class="right_item" @click="handleAdd">
+            <template #icon><plus-outlined /></template>
+            Add Contact Person
+          </a-button>
+        </div>
+        <div>
+          <a-button class="right_item">Imported</a-button>
+        </div>
+        <div>
+          <a-button shape="circle" class="right_item">
+            <template #icon><SettingOutlined /></template>
+          </a-button>
+        </div>
       </div>
     </div>
     <div class="filter_data">
@@ -57,7 +94,11 @@
         </a-button>
       </div>
     </div>
-    <TableItem class="table_item" :dataDisplaySelect="dataDisplaySelect" />
+    <TableItem
+      class="table_item"
+      :dataDisplaySelect="dataDisplaySelect"
+      ref="buttonAdd"
+    />
 
     <!-- Main Modal -->
     <a-modal
@@ -82,7 +123,7 @@
       <div class="modal_content">
         <p class="modal_content_title">Column Info</p>
         <draggable
-          :list="checkDataDisplaySelect02"
+          :list="checkDataDisplaySelect"
           :disabled="!enabled"
           item-key="value"
           class="list-group"
@@ -106,19 +147,6 @@
             </a-button>
           </template>
         </draggable>
-        <!-- <a-button
-          v-for="item in checkDataDisplaySelect"
-          :key="item.key"
-          class="info_item info_item_cancle"
-        >
-          <div>
-            <UnorderedListOutlined class="front_element" />
-            <span>{{ item.value }}</span>
-          </div>
-          <div>
-            <CloseOutlined @click="removeDataDisplaySelect(item)" />
-          </div>
-        </a-button> -->
         <a-button type="dashed" block class="info_item" @click="showModal">
           <PlusOutlined />
           Add Field
@@ -255,23 +283,24 @@ export default {
     // confirmDataDisplaySelect used for confirm button in sub modal.
     const confirmDataDisplaySelect = {};
     // checkDataDisplaySelect used for recheck button in main modal.
-    const checkDataDisplaySelect = { ...dataDisplaySelect };
-    const checkDataDisplaySelect02 = [...dataDisplaySelect];
+    const checkDataDisplaySelect = [...dataDisplaySelect];
     const mainModalLoading = ref(false);
     const mainModalVisible = ref(false);
     // constant name visible used for handle sub modal visible.
     const visible = ref(false);
+    const collapsed = false;
 
     return {
+      title: "Contact Person List",
       mainModalLoading,
       mainModalVisible,
       dataDisplaySelect,
       visible,
       confirmDataDisplaySelect,
-      checkDataDisplaySelect,
       enabled: true,
       dragging: false,
-      checkDataDisplaySelect02,
+      checkDataDisplaySelect,
+      collapsed,
     };
   },
   computed: {
@@ -299,15 +328,12 @@ export default {
     // this method used to handle cancel state in main modal.
     mainHandleCancel() {
       this.mainModalVisible = false;
-      this.checkDataDisplaySelect = { ...this.dataDisplaySelect };
+      this.checkDataDisplaySelect = [...this.dataDisplaySelect];
     },
     // this method used to chenge sub modal visible.
     showModal() {
       this.visible = true;
     },
-    // showSubSelectDisplayModal() {
-    //   this.visible = true;
-    // },
     // // this method used to handle ok state in sub modal.
     subHandleOk() {
       // tessArr used for convert wrong format data to correct format for checkDataDisplaySelect.
@@ -325,18 +351,9 @@ export default {
           {}
         );
       }
-      this.checkDataDisplaySelect = {
-        ...this.dataDisplaySelect,
-      };
-
       for (const item of testArr) {
-        // const size = Object.keys(this.checkDataDisplaySelect).length;
-        // this.checkDataDisplaySelect = { ...this.checkDataDisplaySelect };
-        // this.checkDataDisplaySelect[size] = item;
-        this.checkDataDisplaySelect02.push(item)
+        this.checkDataDisplaySelect.push(item);
       }
-      console.log(this.dataDisplaySelect);
-      console.log(this.checkDataDisplaySelect02)
       // close sub modal and restate main modal to present.
       this.visible = false;
       this.mainModalVisible = false;
@@ -348,7 +365,6 @@ export default {
     subHandleCancel() {
       this.visible = false;
     },
-
     // this method used when button in sub modal is clicked.
     addDataDisplaySelect(item) {
       let newItem =
@@ -360,10 +376,13 @@ export default {
     removeDataDisplaySelect(item) {
       for (const [key, value] of Object.entries(this.checkDataDisplaySelect)) {
         if (value === item) {
-          delete this.checkDataDisplaySelect[key];
+          this.checkDataDisplaySelect.splice(key, 1);
         }
       }
-      delete this.confirmDataDisplaySelect[item.key];
+    },
+    // this method used when add contact person clicked.
+    handleAdd() {
+      this.$refs.buttonAdd.handleAdd();
     },
   },
   watch: {
@@ -393,6 +412,25 @@ export default {
 </script>
 
 <style scoped>
+.title_and_dropdown {
+  display: flex;
+  flex-direction: row;
+}
+.dropdown {
+  margin-left: 10px;
+  width: 28px;
+  height: 28px;
+  background: #e8e8ea;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.dropdown_icon {
+  padding-top: 6px;
+}
+.button_right_top_page {
+  display: flex;
+  flex-direction: row;
+}
 ul.sort {
   list-style: none;
   padding: 0;
@@ -416,7 +454,7 @@ li.sort-item {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 .footer {
   display: flex;

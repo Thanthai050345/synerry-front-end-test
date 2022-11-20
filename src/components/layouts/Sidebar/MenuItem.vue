@@ -1,11 +1,7 @@
 <template>
   <a-menu-item :key="menuKey">
     <router-link :to="to">
-      <div v-if="icon">
-        <span v-html="{ icon }"></span>
-        <span>{{ label }}</span>
-      </div>
-      <div v-else>
+      <div>
         <span>{{ label }}</span>
       </div>
     </router-link>
@@ -22,16 +18,11 @@ export default {
     },
     to: {
       type: String,
+      required: true,
     },
     menuKey: {
       type: String,
       required: true,
-    },
-    data: {
-      type: Array,
-    },
-    icon: {
-      type: String,
     },
   },
 };

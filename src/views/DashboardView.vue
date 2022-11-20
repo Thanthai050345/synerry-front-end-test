@@ -67,6 +67,7 @@
 </template>
   
 <script>
+import Vue from "vue";
 export default {
   name: "DashboardView",
   data() {
@@ -94,10 +95,13 @@ export default {
     };
   },
   components: {},
+  create() {
+    const app = Vue.createApp({});
+    app.config.globalProperties.$myGlobalVariable = "globalVariable";
+  },
 };
 </script>
 
 <style scoped>
-
 </style>
   
