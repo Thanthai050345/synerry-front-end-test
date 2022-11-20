@@ -1,6 +1,6 @@
 # synerry-frontend-test
 
-## This is my first time with Vuejs.
+>This is my first time with Vuejs.
 That make me write this project so hard code, not good style and not performance. some similarity tag should be create a component but i can't find the way to do that. but I select this question because I want to learn new framework and want to chalenge myselve about **VueJs**
 
 - การซ่อน และแสดง เมนูทางด้านซ้ายยังติดบัคเกี่ยวกับ style เล็กน้อย แต่ Browser สามารถจดจำการ การซ่อนหรือแสดง ของเมนูได้ ซึ่งถูกเก็บไว้ใน Localstorage
