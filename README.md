@@ -1,7 +1,7 @@
 # synerry-frontend-test
 
 ## This is my first time with Vuejs.
-That make me write this project so hard code, not good style and not performance. some similarity tag should be create a component but i can't find the way to do that. but I select this question because I want to learn new framework and want to chalenge myselve about **VueJs**
+That make me write this project so hard code, not good style and not performance. some similarity tag should be create a component but i can't find the way to do that. but I select this question because I want to learn new framework and want to chalenge myself about **VueJs**
 
 - การซ่อน และแสดง เมนูทางด้านซ้ายยังติดบัคเกี่ยวกับ style เล็กน้อย แต่ Browser สามารถจดจำการ การซ่อนหรือแสดง ของเมนูได้ ซึ่งถูกเก็บไว้ใน Localstorage
 - **สามารถ** จำลองข้อมูลในแต่ละฟิวด์ โดยเชื่อมโยงข้อมูลด้วย Dummy data เป็น Json ไฟล์ได้
@@ -19,7 +19,7 @@ If you want to see this project on you locallhost you will be...
 1. The first step when you cloning this repository. you will be run command "yarn" in command line or another command for install depedency in package.json.
 2. The second step to start the project. you will be run command "yarn serve" to serve this project.
 
-**If you have problem about how to run this project, plase texing to me**\
+**If you have problem about how to run this project, plase contact me**\
 FB: [Thanthai Jitprathum](https://web.facebook.com/tanthai.jitprathum)\
 Linkedin: [Thanthai's Linkedin](www.linkedin.com/in/thanthai-jitprathum)\
 LineID: talanddd
