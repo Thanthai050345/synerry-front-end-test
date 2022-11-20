@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunksynerry_frontend_test"]=self["webpackChunksynerry_frontend_test"]||[]).push([[270],{5270:function(n,e,r){r.r(e),r.d(e,{default:function(){return i}});var t=r(3396);const s={class:"contact_person"},a=(0,t._)("div",null,"Dashboard Page",-1),c=[a];function o(n,e,r,a,o,u){return(0,t.wg)(),(0,t.iD)("div",s,c)}var u={name:"DashboardView"},d=r(89);const f=(0,d.Z)(u,[["render",o]]);var i=f}}]);
+//# sourceMappingURL=270.006c5898.js.map

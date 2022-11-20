@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunksynerry_frontend_test"]=self["webpackChunksynerry_frontend_test"]||[]).push([[10],{4010:function(n,e,t){t.r(e),t.d(e,{default:function(){return f}});var r=t(3396);const s={class:"contact_person"};function o(n,e,t,o,c,a){return(0,r.wg)(),(0,r.iD)("div",s,"System Log Page")}var c={name:"SystemLogView",components:{}},a=t(89);const u=(0,a.Z)(c,[["render",o]]);var f=u}}]);
+//# sourceMappingURL=10.b830fd17.js.map

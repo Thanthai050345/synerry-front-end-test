@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunksynerry_frontend_test"]=self["webpackChunksynerry_frontend_test"]||[]).push([[562],{562:function(e,n,r){r.r(n),r.d(n,{default:function(){return f}});var t=r(3396);const s={class:"contact_person"};function c(e,n,r,c,o,a){return(0,t.wg)(),(0,t.iD)("div",s,"Member Page")}var o={name:"MemberView",components:{}},a=r(89);const u=(0,a.Z)(o,[["render",c]]);var f=u}}]);
+//# sourceMappingURL=562.7cd1ab14.js.map

@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunksynerry_frontend_test"]=self["webpackChunksynerry_frontend_test"]||[]).push([[961],{6961:function(n,e,t){t.r(e),t.d(e,{default:function(){return f}});var r=t(3396);const a={class:"contact_person"};function s(n,e,t,s,o,c){return(0,r.wg)(),(0,r.iD)("div",a,"Manage Layout Page")}var o={name:"ManageLayoutView",components:{}},c=t(89);const u=(0,c.Z)(o,[["render",s]]);var f=u}}]);
+//# sourceMappingURL=961.f32e8c7c.js.map
