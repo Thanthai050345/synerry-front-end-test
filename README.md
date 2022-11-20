@@ -13,7 +13,8 @@ That make me write this project so hard code, not good style and not performance
 This project...\
 Using Yarn version 1.22.19\
 Using Node version 16.15.1\
-ane another library in package.json file\
+Using UI framework Ant-Design-Vue version 3.2.15\
+ane another library in package.json file
 
 If you want to see this project on you locallhost you will be...
 1. The first step when you cloning this repository. you will be run command "yarn" in command line or another command for install depedency in package.json.
