@@ -3,7 +3,7 @@
 ## This is my first time with Vuejs.
 That make me write this project so hard code, not good style and not performance. some similarity tag should be create a component but i can't find the way to do that. but I select this question because I want to learn new framework and want to chalenge myself about **VueJs**
 
-- การซ่อน และแสดง เมนูทางด้านซ้ายยังติดบัคเกี่ยวกับ style เล็กน้อย แต่ Browser สามารถจดจำการ การซ่อนหรือแสดง ของเมนูได้ ซึ่งถูกเก็บไว้ใน Localstorage
+- **สามารถ** ซ่อน และแสดง เมนูทางด้านซ้าย และ Browser สามารถจดจำการ การซ่อนหรือแสดของเมนูได้ ซึ่งถูกเก็บไว้ใน Localstorage
 - **สามารถ** จำลองข้อมูลในแต่ละฟิวด์ โดยเชื่อมโยงข้อมูลด้วย Dummy data เป็น Json ไฟล์ได้
 - **สามารถ** เลือกจำนวนการแสดงผลต่อหน้าได้ (25, 50, 75) และเลือกหน้าแสดงหน้าที่เปิดได้ตามหน้าจอ wireframe ใน figma ได้
 - **สามารถ** เพิ่ม/ลด/จัดเรียง(Dragdrop column) คอลัมน์ตารางข้อมูลได้ตามหน้าจอ wireframe ใน figma ได้
