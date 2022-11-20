@@ -10,7 +10,7 @@ That make me write this project so hard code, not good style and not performance
 - **ยังไม่เขียนฟังก์ชั่นที่เป็นประโยชน์ต่อผู้ใช้เพิ่มเติมนอกจากนี้**
 
 ## Project environment and How to run this project
-This project...__
+This project...\
 Using Yarn version 1.22.19__
 Using Node version 16.15.1__
 ane another library in package.json file__
