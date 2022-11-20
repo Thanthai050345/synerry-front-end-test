@@ -1,7 +1,7 @@
 # synerry-frontend-test
 
 ## This is my first time with Vuejs.
-That make me write this project so hard code, not good style and not performance. some similarity tag should be create a component but i can't find the way to do that. but I select this question because I want to learn new framework and want to chalenge myself about **VueJs**
+That make me write this project so hard code, not good style and not performance. some similarity tag should be create a component but i can't find the way to do that. but I choose this question because I want to learn new framework and want to chalenge myself about **VueJs**
 
 - **สามารถ** ซ่อน และแสดง เมนูทางด้านซ้าย และ Browser สามารถจดจำการ การซ่อนหรือแสดของเมนูได้ ซึ่งถูกเก็บไว้ใน Localstorage
 - **สามารถ** จำลองข้อมูลในแต่ละฟิวด์ โดยเชื่อมโยงข้อมูลด้วย Dummy data เป็น Json ไฟล์ได้
