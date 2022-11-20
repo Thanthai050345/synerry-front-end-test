@@ -1,7 +1,14 @@
 # synerry-frontend-test
 
 ## This is my first time with Vuejs.
-That make me write this project so hard code and not performance. some similarity tag should be create a component but i can't find the way to do that. but I select this question because I want to learn new framework and want to chalenge myselve about **VueJs**
+That make me write this project so hard code, not good style and not performance. some similarity tag should be create a component but i can't find the way to do that. but I select this question because I want to learn new framework and want to chalenge myselve about **VueJs**
+
+**But!!!**
+- **ยังไม่สามารถ** ซ่อน และแสดง เมนูทางด้านซ้ายได้ แต่ Browser สามารถจดจำการ การซ่อนหรือแสดง ของเมนูได้ ซึ่งถูกเก็บไว้ใน Localstorage
+- **สามารถ** จำลองข้อมูลในแต่ละฟิวด์ โดยเชื่อมโยงข้อมูลด้วย Dummy data เป็น Json ไฟล์ได้
+- **สามาร3** เลือกจำนวนการแสดงผลต่อหน้าได้ (25, 50, 75) และเลือกหน้าแสดงหน้าที่เปิดได้ตามหน้าจอ wireframe ใน figma ได้
+- **สามารถ** เพิ่ม/ลด/จัดเรียง(Dragdrop column) คอลัมน์ตารางข้อมูลได้ตามหน้าจอ wireframe ใน figma ได้
+- **ยังไม่เขียนฟังก์ชั่นที่เป็นประโยชน์ต่อผู้ใช้เพิ่มเติมนอกจากนี้**
 
 ## Project environment and How to run this project
 This project...
